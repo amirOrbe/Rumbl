@@ -4,7 +4,11 @@ defmodule RumblWeb.VideoControllerTest do
   alias Rumbl.Multimedia
 
   @create_attrs %{" url": "some  url", description: "some description", title: "some title"}
-  @update_attrs %{" url": "some updated  url", description: "some updated description", title: "some updated title"}
+  @update_attrs %{
+    " url": "some updated  url",
+    description: "some updated description",
+    title: "some updated title"
+  }
   @invalid_attrs %{" url": nil, description: nil, title: nil}
 
   def fixture(:video) do
@@ -75,6 +79,7 @@ defmodule RumblWeb.VideoControllerTest do
     test "deletes chosen video", %{conn: conn, video: video} do
       conn = delete(conn, Routes.video_path(conn, :delete, video))
       assert redirected_to(conn) == Routes.video_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.video_path(conn, :show, video))
       end
