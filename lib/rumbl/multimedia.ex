@@ -2,7 +2,7 @@ defmodule Rumbl.Multimedia do
   @moduledoc """
   The Multimedia context.
   """
-
+  import Ecto.Query
   import Ecto.Query, warn: false
   alias Rumbl.Repo
 
@@ -50,5 +50,11 @@ defmodule Rumbl.Multimedia do
 
   def create_category!(name) do
     Repo.insert!(%Category{name: name}, on_conflict: :nothing)
+  end
+
+  def list_alphabetical_categories do
+    Category
+    |> Category.alphabetical()
+    |> Repo.all()
   end
 end
