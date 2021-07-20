@@ -20,9 +20,11 @@ defmodule RumblWeb.ConnCase do
   using do
     quote do
       # Import conveniences for testing with connections
-      import Plug.Conn
-      import Phoenix.ConnTest
-      import RumblWeb.ConnCase
+      use Phoenix.ConnTest
+      import Rumbl.TestHelpers
+      #import Plug.Conn
+      #import Phoenix.ConnTest
+      #import RumblWeb.ConnCase
 
       alias RumblWeb.Router.Helpers, as: Routes
 
